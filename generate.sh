@@ -3,7 +3,7 @@
 cd /data
 
 if [[ ! $# -eq 1 ]] ; then
-    echo 'Please specify an environment to generate, e.g. ./generate.sh env-gcp'
+    echo 'Please specify an environment as a single argument, e.g. docker run coolersport/mustache-bash env-gcp'
     exit 1
 fi
 
