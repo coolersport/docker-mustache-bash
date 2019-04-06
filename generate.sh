@@ -9,13 +9,18 @@ fi
 
 ENV=$1
 
-if [[ ! -f .$ENV ]] ; then
-    echo Environment file .${ENV} not found.
+if [[ -f .$ENV.yml ]]; then
+    ENVFILE=.$ENV.yml
+elif [[ -f .$ENV ]]; then
+    # backward compatibility
+    ENVFILE=.$ENV
+else
+    echo Environment file .${ENV}.yml not found.
     exit 2
 fi
 
 mkdir -p `pwd`/$ENV
 for f in `ls *.yml`
 do
-  mustache .$ENV $f > $ENV/$f
+  mustache $ENVFILE $f > $ENV/$f
 done
